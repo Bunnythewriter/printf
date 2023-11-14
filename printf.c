@@ -6,7 +6,7 @@ int _print_char(char c)
 {
     while (c != '\0') {
         _putchar(c);}
-    return c; /*change 0*/
+    return 0; /*change 0*/
 }
 
 void _print_string(const char *format) {
@@ -29,7 +29,7 @@ int _print_num(int c)
         _print_num(c / 10);
     }
         _putchar('0' + c % 10);
-        return c; /*CHANGE 1*/
+        return 0; /*CHANGE 1*/
     
 }
 
