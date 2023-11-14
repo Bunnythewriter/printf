@@ -6,14 +6,18 @@ int _print_char(char c)
 {
     while (c != '\0') {
         _putchar(c);}
+        c++;
     return 0; /*change 0*/
 }
 
-void _print_string(const char *format) {
+int _print_string(const char *format) {
+    int cc = 0;
     while (*format != '\0') {
-        _putchar(*format);
+        cc += _putchar(*format);
         format++;
+        cc++;
     }
+    return cc;
 }
 
 int _print_num(int c)
@@ -29,11 +33,11 @@ int _print_num(int c)
         _print_num(c / 10);
     }
         _putchar('0' + c % 10);
-        return 0; /*CHANGE 1*/
+        return 1; /*CHANGE 1*/
     
 }
 
-void _print_dec(double n)
+int _print_dec(double n)
 {
     int i;
     if (n < 0){
@@ -52,13 +56,15 @@ void _print_dec(double n)
     _putchar('0' + (int)n);
     n -= (int)n;
     }
+    return 1;
 }
 
 int _printf(const char *format, ...)
 {
+    int cs = 0;
     va_list argc;
-    va_start(argc, *format);
-
+    va_start(argc, format);
+    
     while (*format != '\0')
     {
         if (*format == '%')
@@ -69,28 +75,28 @@ int _printf(const char *format, ...)
             case 'c': /*handle character*/
                 {
                     char sc = va_arg(argc, int);
-                    _putchar(sc);
+                    cs += _putchar(sc);
                 }
                 break;
                 
             case 's': /*handle string*/
                 {
                     char *format = va_arg(argc, char *);
-                    _print_string(format);
+                    cs += _print_string(format);
                 }
                 break;
 
             case 'd': /*Handle integer*/
             {
                 int num = va_arg(argc, int);
-                _print_num(num);
+                cs += _print_num(num);
             }
             break;
             
             case 'i': /*Handle decimal*/
             {
                 double digit = va_arg(argc, double);
-                _print_dec(digit);
+                cs += _print_dec(digit);
             }
             break;
 
@@ -104,11 +110,11 @@ int _printf(const char *format, ...)
 
     else 
         {
-            _putchar(*format);
+            cs += write(1, format, 1);
         }
     format++;
     }
 
     va_end(argc);
-    return 0; /*CHANGE 2*/
+    return cs; /*CHANGE 2*/
 }
