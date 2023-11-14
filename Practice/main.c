@@ -10,8 +10,7 @@
  */
 int main(void)
 {
-   int len;
-    int len2;
+    int len;
     int x = 10;
     int y = 20;
     len = _printf("Let's try to printf a simple sentence.\n");

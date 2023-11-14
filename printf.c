@@ -6,6 +6,7 @@ int _print_char(char c)
 {
     while (c != '\0') {
         _putchar(c);}
+    return c; /*change 0*/
 }
 
 void _print_string(const char *format) {
@@ -28,11 +29,13 @@ int _print_num(int c)
         _print_num(c / 10);
     }
         _putchar('0' + c % 10);
+        return c; /*CHANGE 1*/
     
 }
 
 void _print_dec(double n)
 {
+    int i;
     if (n < 0){
     _putchar('-');
     n = -n;}
@@ -42,7 +45,8 @@ void _print_dec(double n)
     _putchar('.');
 
     n -= (int)n;
-    for (int i = 0; i < 3; i++)
+    
+    for (i = 0; i < 3; i++)
     {
     n *= 10;
     _putchar('0' + (int)n);
@@ -88,7 +92,7 @@ int _printf(const char *format, ...)
                 double digit = va_arg(argc, double);
                 _print_dec(digit);
             }
-            
+            break;
 
             default:
             _putchar('%');
@@ -106,4 +110,5 @@ int _printf(const char *format, ...)
     }
 
     va_end(argc);
+    return 0; /*CHANGE 2*/
 }
