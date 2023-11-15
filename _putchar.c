@@ -2,7 +2,7 @@
 /**
  * _putchar function to print characters
  * @c: charcter variable
- * Return: The character 
+ * Return: The character
 */
 int _putchar(char c)
 {

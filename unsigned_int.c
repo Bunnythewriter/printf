@@ -8,19 +8,16 @@
 */
 int unsign_int(unsigned int number)
 {
-    int count = 0;
-    if (number <= 0)
-    {
-       count += _putchar('-');
-        number = -number;
-    }
-
-    if (number / 10 != 0)
-    {
-       count += _print_int_num(number / 10);
-    }
-       count += _putchar('0' + number % 10);
-    
-
-    return (count);
+int count = 0;
+if (number <= 0)
+{
+    count += _putchar('-');
+    number = -number;
+}
+if (number / 10 != 0)
+{
+    count += _print_int_num(number / 10);
+}
+    count += _putchar('0' + number % 10);
+return (count);
 }

@@ -8,13 +8,12 @@
 */
 int _print_string(char *str)
 {
-    int count = 0;
-    while(*str != '\0')
-    {
-        count += _putchar(*str);
-        str++;
-        count++;
-    }
-
-    return (count);
+int count = 0;
+while(*str != '\0')
+{
+    count += _putchar(*str);
+    str++;
+    count++;
+}
+return (count);
 }
