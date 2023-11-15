@@ -2,60 +2,10 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * 
+ * _printf - our custom printf
+ * @format: values to be printed
+ * Return: Same output as regular printf 
 */
-int _print_string(char *str)
-{
-    int count = 0;
-    while(*str != '\0')
-    {
-        count += _putchar(*str);
-        str++;
-        count++;
-    }
-
-    return (count);
-}
-
-int _print_int_num(int number)
-{
-    int count = 0;
-    if (number < 0)
-    {
-        count += _putchar('-');
-        number = -number;
-    }
-
-    if (number / 10 != 0)
-    {
-        _print_int_num(number / 10);
-    }
-       count += _putchar('0' + number % 10);
-    
-
-    return (count);
-}
-
-int unsign_int(unsigned int number)
-{
-    int count = 0;
-    if (number <= 0)
-    {
-       count += _putchar('-');
-        number = -number;
-    }
-
-    if (number / 10 != 0)
-    {
-       count += _print_int_num(number / 10);
-    }
-       count += _putchar('0' + number % 10);
-    
-
-    return (count);
-}
-
-
 int _printf(const char *format, ...)
 {
     va_list args;
@@ -108,4 +58,3 @@ int _printf(const char *format, ...)
     va_end(args);
     return(count);
 }
-
