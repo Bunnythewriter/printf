@@ -2,119 +2,90 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int _print_char(char c)
+
+int _putchar(char c)
 {
-    while (c != '\0') {
-        _putchar(c);}
-        c++;
-    return 0; /*change 0*/
+    return(write(1, &c, 1));
 }
 
-int _print_string(const char *format) {
-    int cc = 0;
-    while (*format != '\0') {
-        cc += _putchar(*format);
-        format++;
-        cc++;
+
+int _print_string(char *str)
+{
+    int count = 0;
+    while(*str != '\0')
+    {
+        count += _putchar(*str);
+        str++;
+        count++;
     }
-    return cc;
+
+    return (count);
 }
 
-int _print_num(int c)
+
+int _print_int_num(int number)
 {
-    if (c < 0)
+    int count = 0;
+    if (number < 0)
     {
-        _putchar('-');
-        c = -c;
+        count += _putchar('-');
+        number = -number;
     }
 
-    if (c/10 != 0)
+    if (number / 10 != 0)
     {
-        _print_num(c / 10);
+        _print_int_num(number / 10);
     }
-        _putchar('0' + c % 10);
-        return 1; /*CHANGE 1*/
+       count += _putchar('0' + number % 10);
     
+
+    return (count);
 }
 
-int _print_dec(double n)
-{
-    int i;
-    if (n < 0){
-    _putchar('-');
-    n = -n;}
-
-    _print_num((int)n);
-
-    _putchar('.');
-
-    n -= (int)n;
-    
-    for (i = 0; i < 3; i++)
-    {
-    n *= 10;
-    _putchar('0' + (int)n);
-    n -= (int)n;
-    }
-    return 1;
-}
 
 int _printf(const char *format, ...)
 {
-    int cs = 0;
-    va_list argc;
-    va_start(argc, format);
-    
+    va_list args;
+    int count = 0;
+    va_start(args, format);
+
     while (*format != '\0')
     {
         if (*format == '%')
         {
             format++;
-            switch (*format)
-            {
-            case 'c': /*handle character*/
-                {
-                    char sc = va_arg(argc, int);
-                    cs += _putchar(sc);
-                }
-                break;
-                
-            case 's': /*handle string*/
-                {
-                    char *format = va_arg(argc, char *);
-                    cs += _print_string(format);
-                }
-                break;
 
-            case 'd': /*Handle integer*/
+            if (*format == 'c')
             {
-                int num = va_arg(argc, int);
-                cs += _print_num(num);
-            }
-            break;
-            
-            case 'i': /*Handle decimal*/
-            {
-                double digit = va_arg(argc, double);
-                cs += _print_dec(digit);
-            }
-            break;
-
-            default:
-            _putchar('%');
-            break;
+                char s = va_arg(args, int);
+                count += _putchar(s);
             }
 
+            else if (*format == 's')
+            {
+                char *str = va_arg(args, char *);
+                count += _print_string(str);
+            }
+
+            else if (*format == 'd' || *format == 'i')
+            {
+                int num = va_arg(args, int);
+                count += _print_int_num(num);
+            }
+
+            else {
+                _putchar('%');
+                format++;
+                _putchar(*format);
+            }
         }
 
-
-    else 
-        {
-            cs += write(1, format, 1);
+        else
+        {        
+           count += _putchar(*format);
         }
-    format++;
+        format++;
     }
-
-    va_end(argc);
-    return cs; /*CHANGE 2*/
+    va_end(args);
+    return(count);
 }
