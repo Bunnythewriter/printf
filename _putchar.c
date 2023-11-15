@@ -1,8 +1,8 @@
 #include <unistd.h>
 /**
- * _putchar function to print characters
- * @c: charcter variable
- * Return: The character
+* _putchar function to print characters
+* @c: charcter variable
+* Return: The character
 */
 int _putchar(char c)
 {

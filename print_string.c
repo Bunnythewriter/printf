@@ -2,9 +2,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * -print_string - function to print a string
- * @str: pointer to the expected string
- * Return: pointer to the expected string
+* -print_string - function to print a string
+* @str: pointer to the expected string
+* Return: pointer to the expected string
 */
 int _print_string(char *str)
 {

@@ -2,9 +2,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * _printf - our custom printf
- * @format: values to be printed
- * Return: Same output as regular printf 
+* _printf - our custom printf
+* @format: values to be printed
+* Return: Same output as regular printf 
 */
 int _printf(const char *format, ...)
 {

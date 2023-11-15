@@ -2,9 +2,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * _print_int_num - function to print numbers
- * @number: The integer expected
- * Return: The integer
+* _print_int_num - function to print numbers
+* @number: The integer expected
+* Return: The integer
 */
 int _print_int_num(int number)
 {
