@@ -1,14 +1,9 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
-
-
-int _putchar(char c)
-{
-    return(write(1, &c, 1));
-}
-
-
+/**
+ * 
+*/
 int _print_string(char *str)
 {
     int count = 0;
@@ -22,7 +17,6 @@ int _print_string(char *str)
     return (count);
 }
 
-
 int _print_int_num(int number)
 {
     int count = 0;
@@ -35,6 +29,25 @@ int _print_int_num(int number)
     if (number / 10 != 0)
     {
         _print_int_num(number / 10);
+    }
+       count += _putchar('0' + number % 10);
+    
+
+    return (count);
+}
+
+int unsign_int(unsigned int number)
+{
+    int count = 0;
+    if (number <= 0)
+    {
+       count += _putchar('-');
+        number = -number;
+    }
+
+    if (number / 10 != 0)
+    {
+       count += _print_int_num(number / 10);
     }
        count += _putchar('0' + number % 10);
     
@@ -73,6 +86,12 @@ int _printf(const char *format, ...)
                 count += _print_int_num(num);
             }
 
+            else if (*format == 'u')
+            {
+                unsigned int num = va_arg(args, unsigned int);
+                count += unsign_int(num);
+            }
+
             else {
                 _putchar('%');
                 format++;
@@ -89,3 +108,4 @@ int _printf(const char *format, ...)
     va_end(args);
     return(count);
 }
+
